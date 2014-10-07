@@ -1,0 +1,76 @@
+<html>
+<head>
+	<title>Affiliate Link Generator</title>
+	<script type="text/javascript">
+	function updateQueryStringParameter(uri, key, value) {
+	    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+	    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+	    if (uri.match(re)) {
+	        return uri.replace(re, '$1' + key + "=" + value + '$2');
+	    } else {
+	        return uri + separator + key + "=" + value;
+	    }
+	}
+	function fk_gen() {
+		var url = document.getElementById('fk_link').value;
+		var affid = document.getElementById('fk_affid').value;
+		var ext1 = document.getElementById('fk_ext1').value;
+		var ext2 = document.getElementById('fk_ext2').value;
+		var final_url = url;
+		final_url = updateQueryStringParameter(final_url, "affid", affid);
+		if(ext1 != "") final_url = updateQueryStringParameter(final_url, "affExtParam1", ext1);
+		if(ext2 != "") final_url = updateQueryStringParameter(final_url, "affExtParam2", ext2);
+		document.getElementById('fk_final').value = final_url;
+	}
+	</script>
+	<style type="text/css">
+	body {
+		font-family: "Century Gothic", "Segoe UI", sans-serif;
+	}
+	#foot_c {
+		width: 100%;
+		position: relative;
+		margin: 0;
+		text-align: center;
+	}
+	</style>
+</head>
+<body>
+	<center style="max-width:100%">
+		<img src="fk.png"></img><br>
+		Simple Affiliate Link Generator<br><br>
+		<br><br>
+		<div>
+			<table>
+				<tr>
+					<td>Flipkart.com Link</td>
+					<td><input id="fk_link"></input></td>
+				</tr>
+				<tr>
+					<td>Enter "affid"</td>
+					<td><input id="fk_affid"></input></td>
+				</tr>
+				<tr>
+					<td>Enter "affExtParam1" </td>
+					<td><input id="fk_ext1"></input></td>
+				</tr>
+				<tr>
+					<td>Enter "affExtParam2" </td>
+					<td><input id="fk_ext2"></input></td>
+				</tr>
+			</table>
+		</div>
+		<br><br>
+		<div>
+			<button onclick="fk_gen()">Generate Tracking Link</button>
+		</div>
+		<br><br>
+		<div>
+			Your final link (copy and share):<br>
+			<input id="fk_final" onclick="this.select();" style="max-width:100%;font-size:40px"></input>
+		</div>
+		<br>
+	</center>
+	<div id="foot_c">&copy; Akshat Mittal</div>
+</body>
+</html>
