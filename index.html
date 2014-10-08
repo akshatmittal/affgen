@@ -2,6 +2,9 @@
 <head>
 	<title>Affiliate Link Generator</title>
 	<script type="text/javascript">
+	String.prototype.isEmpty = function() {
+	    return (this.length === 0 || !this.trim());
+	};
 	function updateQueryStringParameter(uri, key, value) {
 	    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
 	    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
@@ -16,6 +19,10 @@
 		var affid = document.getElementById('fk_affid').value;
 		var ext1 = document.getElementById('fk_ext1').value;
 		var ext2 = document.getElementById('fk_ext2').value;
+		if(url.isEmpty()) url = "http://www.flipkart.com/";
+		if(affid.isEmpty()) affid = "akshatcool";
+		if(ext1.isEmpty()) ext1 = "gitaffgen";
+		if(ext2.isEmpty()) ext2 = "default";
 		var final_url = url;
 		final_url = updateQueryStringParameter(final_url, "affid", affid);
 		if(ext1 != "") final_url = updateQueryStringParameter(final_url, "affExtParam1", ext1);
