@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title>Affiliate Link Generator</title>
+	<script type="text/javascript">
+	String.prototype.isEmpty = function() {
+	    return (this.length === 0 || !this.trim());
+	};
+	function updateQueryStringParameter(uri, key, value) {
+	    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+	    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+	    if (uri.match(re)) {
+	        return uri.replace(re, '$1' + key + "=" + value + '$2');
+	    } else {
+	        return uri + separator + key + "=" + value;
+	    }
+	}
+	function ip_gen() {
+		var inp = document.getElementById('inplink').value;
+		final_url = "http://linksredirect.com?pub_id=4191CL3991&url=" + encodeURIComponent(inp);
+		document.getElementById('fk_final').value = final_url;
+	}
+	</script>
+	<style type="text/css">
+	body {
+		font-family: "Century Gothic", "Segoe UI", sans-serif;
+	}
+	#foot_c {
+		width: 100%;
+		position: relative;
+		margin: 0;
+		text-align: center;
+	}
+	</style>
+</head>
+<body>
+	<center style="max-width:100%">
+		<h1>Cuelinks</h1><br>
+		Simple Affiliate Link Generator<br><br>
+		<br><br>
+		<div>
+			<table>
+				<tr>
+					<td>Any Link (supported by Cuelinks)</td>
+					<td><input id="inplink"></input></td>
+				</tr>
+			</table>
+		</div>
+		<br><br>
+		<div>
+			<button onclick="ip_gen()">Generate Tracking Link</button>
+		</div>
+		<br><br>
+		<div>
+			Your final link (copy and share):<br>
+			<input id="fk_final" onclick="this.select();" style="max-width:100%;font-size:40px"></input>
+		</div>
+		<br>
+	</center>
+	<div id="foot_c">&copy; Akshat Mittal</div>
+</body>
+</html>
